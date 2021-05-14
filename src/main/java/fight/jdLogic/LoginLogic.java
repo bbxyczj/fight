@@ -3,15 +3,13 @@ package fight.jdLogic;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.alibaba.fastjson.JSON;
-import jdmaotai.fight.commons.Configs;
-import jdmaotai.fight.commons.Constants;
+import fight.commons.Configs;
+import fight.commons.Constants;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class LoginLogic {
 
     private HttpRequest  HTTPREQUEST;
 
-    @PostConstruct
+//    @PostConstruct
     public  void login(){
 
         HEADER.put("User-Agent",configs.getUserAgent());

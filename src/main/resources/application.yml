@@ -3,6 +3,13 @@ spring:
     name: fight
   profiles:
     active: dev
+  redis:
+    redission:
+    # see org.redisson.config.Config
+      config:
+        singleServerConfig:
+         address: localhost:6379
+
 server:
   port: 8080
 

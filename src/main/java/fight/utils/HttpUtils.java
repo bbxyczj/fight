@@ -4,7 +4,6 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
-import com.bestv.ops.manager.common.exception.ServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,7 +93,7 @@ public class HttpUtils {
             }
         } catch (Exception ex) {
             logger.error("error in HttpUtil,the request url:{},the param:{}", requestUrl, param, ex);
-            throw new ServiceException("post请求失败:"+ex.getMessage());
+            throw new RuntimeException("post请求失败:"+ex.getMessage());
         } finally {
             try {
                 if (out != null) {
