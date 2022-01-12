@@ -8,12 +8,12 @@ import java.util.concurrent.*;
  * @date 2021/7/20 15:47
  */
 public class ThreadpoolUtils {
-    public static ThreadPoolExecutor myThreadPool = new ThreadPoolExecutor(1,
-            30,10, TimeUnit.SECONDS, new LinkedTransferQueue<>(), new ThreadFactoryToolkit("myThreadPool"),new ThreadPoolExecutor.DiscardPolicy());
+    public static ThreadPoolExecutor myThreadPool = new ThreadPoolExecutor(2000,
+            3000,10, TimeUnit.SECONDS, new LinkedTransferQueue<>(), new ThreadFactoryToolkit("myThreadPool"),new ThreadPoolExecutor.DiscardPolicy());
 
 
     public static void main(String[] args) {
-        for(int i=0;i<200;i++){
+        for(int i=0;i<2000;i++){
 
             int finalI = i;
             myThreadPool.execute(() -> {
@@ -24,7 +24,6 @@ public class ThreadpoolUtils {
                     e.printStackTrace();
                 }
             });
-
             System.out.println("线程池参数"+myThreadPool.toString());
         }
         System.out.println("执行结束");
