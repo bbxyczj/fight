@@ -89,14 +89,23 @@
 			<version>3.15.5</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.deliveredtechnologies/rulebook-core -->
+		<dependency>
+			<groupId>com.deliveredtechnologies</groupId>
+			<artifactId>rulebook-core</artifactId>
+			<version>0.12</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

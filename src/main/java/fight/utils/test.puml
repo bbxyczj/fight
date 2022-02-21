@@ -1,9 +1,22 @@
 @startuml
-用户 -> 认证中心: 登录操作
-认证中心 -> 缓存: 存放(key=token+ip,value=token)token
-用户 <- 认证中心 : 认证成功返回token
-用户 -> 认证中心: 下次访问头部携带token认证
-认证中心 <- 缓存: key=token+ip获取token
-其他服务 <- 认证中心: 存在且校验成功则跳转到用户请求的其他服务
-其他服务 -> 用户: 信息
+start
+:初始化团队信息;
+note left
+        团队人数、bug系数、改进系数
+end note
+:初始化员工信息;
+note left
+        团队绩效（含bug、改进）、bug数、bug类型
+        （0 无 1测试 2开发 3兼有）;
+        、改进点数、改进类型
+        （0 无 1提出人 2解决人 3兼有）;
+end note
+if (是否有bug) then (有)
+   :团队绩效+=根据bug类型*相应bug系数;
+endif
+if (是否有改进) then (有)
+   :团队绩效+=改进点数*相应改进类型系数;
+endif
+:输出绩效成绩;
+stop
 @enduml
