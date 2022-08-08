@@ -7,6 +7,9 @@ package fight.utils;
 
 import org.springframework.lang.Nullable;
 
+import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 字符串工具类
  * <p>
@@ -47,5 +50,23 @@ public class StringUtils {
             }
         }
         return str;
+    }
+
+    public static void main(String[] args) {
+        long t0 = System.nanoTime();
+        long l0 = System.currentTimeMillis();
+        try {
+            TimeUnit.MILLISECONDS.sleep(11L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long t1 = System.nanoTime();
+        long l1 = System.currentTimeMillis();
+        long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+
+        System.out.println(l1-l0);
+        System.out.println(t1-t0);
+        System.out.println(new BigDecimal(t1 - t0).divide(new BigDecimal(1000000),4,BigDecimal.ROUND_DOWN));
+        System.out.println(millis);
     }
 }

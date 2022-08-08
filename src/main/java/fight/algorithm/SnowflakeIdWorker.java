@@ -1,5 +1,11 @@
 package fight.algorithm;
 
+import fight.utils.ThreadFactoryToolkit;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -106,10 +112,13 @@ public class SnowflakeIdWorker {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twepoch) << timestampLeftShift) //
+        long l = ((timestamp - twepoch) << timestampLeftShift) //
                 | (datacenterId << datacenterIdShift) //
                 | (workerId << workerIdShift) //
                 | sequence;
+        System.out.println("获取id----"+l);
+        return l;
+
     }
 
     /**
@@ -133,14 +142,27 @@ public class SnowflakeIdWorker {
         return System.currentTimeMillis();
     }
 
+    private static SnowflakeIdWorker snowflakeIdWorker=new SnowflakeIdWorker(0,0);
+
+    public static synchronized SnowflakeIdWorker getInstance(){
+        return snowflakeIdWorker;
+    }
     //==============================Test=============================================
     /** 测试 */
     public static void main(String[] args) {
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
+        ThreadPoolExecutor threadPoolExecutor =
+                new ThreadPoolExecutor(5, 10, 5
+                        , TimeUnit.SECONDS, new ArrayBlockingQueue<>(10),new ThreadFactoryToolkit("aaa"));
         for (int i = 0; i < 1000; i++) {
-            long id = idWorker.nextId();
+            threadPoolExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    long id = idWorker.nextId();
 //            System.out.println(Long.toBinaryString(id));
-            System.out.println(id);
+                    System.out.println(id);
+                }
+            });
         }
     }
 }

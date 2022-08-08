@@ -7,7 +7,7 @@ import java.util.concurrent.*;
  * @version 1.0
  * @date 2021/7/20 15:47
  */
-public class ThreadpoolUtils {
+public class ThreadPoolUtils {
     public static ThreadPoolExecutor myThreadPool = new ThreadPoolExecutor(2000,
             3000,10, TimeUnit.SECONDS, new LinkedTransferQueue<>(), new ThreadFactoryToolkit("myThreadPool"),new ThreadPoolExecutor.DiscardPolicy());
 
