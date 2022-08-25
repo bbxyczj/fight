@@ -27,8 +27,6 @@ public class SemaphoreTest {
                     @Override
                     protected void beforeExecute(Thread t, Runnable r) {
                        log.info("-------------------"+((Thread) r).getName());
-
-
                     }
                 };
         try {
