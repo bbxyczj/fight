@@ -1,5 +1,7 @@
 package fight.concurrent;
 
+import fight.concurrent.bean.VolatileLong;
+
 /**
  * @Author XE-CZJ
  * @Date 2022/8/5 10:36
@@ -45,52 +47,25 @@ public final class FalseSharing implements Runnable {
 
 
     private static void runTest() throws InterruptedException {
-
         Thread[] threads = new Thread[NUM_THREADS];
-
-
         for (int i = 0; i < threads.length; i++) {
-
             threads[i] = new Thread(new FalseSharing(i));
-
         }
-
-
         for (Thread t : threads) {
-
             t.start();
-
         }
-
-
         for (Thread t : threads) {
-
             t.join();
-
         }
-
     }
 
 
     public void run() {
-
         long i = ITERATIONS + 1;
-
         while (0 != --i) {
-
             longs[arrayIndex].value = i;
-
         }
-
     }
 
-    @sun.misc.Contended
-    public final static class VolatileLong {
-
-        public volatile long value = 0L;
-
-//        public long p1, p2, p3, p4, p5, p6; // comment out
-
-    }
 
 }

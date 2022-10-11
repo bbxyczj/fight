@@ -9,7 +9,8 @@ import java.util.concurrent.*;
  */
 public class ThreadPoolUtils {
     public static ThreadPoolExecutor myThreadPool = new ThreadPoolExecutor(2000,
-            3000,10, TimeUnit.SECONDS, new LinkedTransferQueue<>(), new ThreadFactoryToolkit("myThreadPool"),new ThreadPoolExecutor.DiscardPolicy());
+            3000,10, TimeUnit.SECONDS, new LinkedTransferQueue<>(),
+            new ThreadFactoryToolkit("myThreadPool"),new ThreadPoolExecutor.DiscardPolicy());
 
 
     public static void main(String[] args) {

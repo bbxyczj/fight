@@ -1,7 +1,7 @@
 @startuml
 start
 :初始化团队信息;
-note left
+note right
         团队人数、bug系数、改进系数
 end note
 :初始化员工信息;
